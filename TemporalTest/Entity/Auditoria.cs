@@ -23,7 +23,7 @@ namespace TemporalTest.Entity
             Dados = JsonConvert.SerializeObject(obj);
             DataInsercao = DateTime.Now;
             PerfilAcessoInsercao = usuarioAtualizacao;
-            OldHash = Hash;
+            HashAnterior = Hash;
             IP = "TEste";
             Localizacao = "Teste";
             Hash = GenerateHash();

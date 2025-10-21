@@ -33,7 +33,7 @@ namespace TemporalTest.Controllers
             _dbSet.Entry(usuario).State = EntityState.Modified;
             _dbSet.Update(usuario);
             await contexto.SaveChangesAsync();
-
+                
             return Ok();
         }
 
@@ -50,7 +50,7 @@ namespace TemporalTest.Controllers
         {
             var usuarios = _dbSet.TemporalAll()
                 .Where(x => x.Id == id)
-                .Select(x => new Block() { DataInsercao = x.DataInsercao, Dados = x.Dados, Hash = x.Hash, OldHash = x.OldHash })
+                .Select(x => new Block() { DataInsercao = x.DataInsercao, Dados = x.Dados, Hash = x.Hash, HashAnterior = x.HashAnterior })
                 .OrderBy(x => x.DataInsercao)
                 .ToList();
 

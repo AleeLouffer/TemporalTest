@@ -10,11 +10,11 @@ namespace TemporalTest.Data
             modelBuilder.Entity<Usuario>(x =>
             {
                 x.HasKey(x => x.Id);
-                x.ToTable("Usuario", e => e.IsTemporal(t =>
+                x.ToTable("Usuario_Teste", e => e.IsTemporal(t =>
                 {
-                    t.HasPeriodStart("Inicio");
-                    t.HasPeriodEnd("Fim");
-                    t.UseHistoryTable("Usuario_Historico");
+                    t.HasPeriodStart("ValidoDe");
+                    t.HasPeriodEnd("ValidoAte");
+                    t.UseHistoryTable("Usuario_Teste_Historico");
                 }));
             });
         }
