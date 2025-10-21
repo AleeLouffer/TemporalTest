@@ -10,7 +10,12 @@ namespace TemporalTest.Entity
 
         internal void Criar(string obj, int usuarioInsercao)
         {
-            Dados = JsonConvert.SerializeObject(obj);
+            var jsSettings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            Dados = JsonConvert.SerializeObject(obj, formatting: Formatting.None, jsSettings);
             DataInsercao = DateTime.Now; ;
             PerfilAcessoInsercao = usuarioInsercao;
             IP = "TEste";
@@ -20,7 +25,12 @@ namespace TemporalTest.Entity
 
         internal void AtualizarAuditoria(string obj, int usuarioAtualizacao)
         {
-            Dados = JsonConvert.SerializeObject(obj);
+            var jsSettings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            Dados = JsonConvert.SerializeObject(obj, formatting: Formatting.None, jsSettings);
             DataInsercao = DateTime.Now;
             PerfilAcessoInsercao = usuarioAtualizacao;
             HashAnterior = Hash;
