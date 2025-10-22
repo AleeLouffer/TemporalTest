@@ -14,7 +14,8 @@ namespace TemporalTest.Entity
             Email = model.Email;
             Senha = model.Senha;
             SituacaoId = 1;
-            Criar(JsonConvert.SerializeObject(this), 1);
+            Criar(1);
+            Hash = GenerateHash(JsonConvert.SerializeObject(this));
         }
 
         public int Id { get; set; }
@@ -24,14 +25,15 @@ namespace TemporalTest.Entity
         public string Senha { get; set; } = null!;
         public int SituacaoId { get; set; }
 
-        internal void Atualizar(CriarAtualizarUsuarioDTO model)
+        internal void Atualizar(CriarAtualizarUsuarioDTO model) 
         {
             Nome = model.Nome;
             Login = model.Login;
             Email = model.Email;
             Senha = model.Senha;
             SituacaoId = 2;
-            AtualizarAuditoria(JsonConvert.SerializeObject(this), 1);
+            AtualizarAuditoria(1);
+            Hash = GenerateHash(JsonConvert.SerializeObject(this));
         }
     }
 }

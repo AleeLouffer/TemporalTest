@@ -50,12 +50,10 @@ namespace TemporalTest.Controllers
         {
             var usuarios = _dbSet.TemporalAll()
                 .Where(x => x.Id == id)
-                .Select(x => new Block() { DataInsercao = x.DataInsercao, Dados = x.Dados, Hash = x.Hash, HashAnterior = x.HashAnterior })
-                .OrderBy(x => x.DataInsercao)
+                .OrderBy(x => x.DataInsercao.Date).ThenBy(x => x.DataInsercao.Hour).ThenBy(x => x.DataInsercao.Minute).ThenBy(x => x.DataInsercao.Second)
                 .ToList();
 
-            return usuarios.EstahValido() ? Ok() : NoContent();
+            return new BlockValidator<Usuario>().EstahValido(usuarios) ? Ok("Cadeia Valida!") : BadRequest("Cadeia Invalida!");
         }
-
     }
 }

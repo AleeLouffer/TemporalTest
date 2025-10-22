@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace TemporalTest.Entity
+﻿namespace TemporalTest.Entity
 {
     public class Auditoria : Block
     {
@@ -8,35 +6,21 @@ namespace TemporalTest.Entity
         public string Localizacao { get; set; } = null!;
         public int PerfilAcessoInsercao { get; set; }
 
-        internal void Criar(string obj, int usuarioInsercao)
+        internal void Criar(int usuarioInsercao)
         {
-            var jsSettings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            };
-
-            Dados = JsonConvert.SerializeObject(obj, formatting: Formatting.None, jsSettings);
-            DataInsercao = DateTime.Now; ;
+            DataInsercao = DateTime.Now.FormatarDateTime();
             PerfilAcessoInsercao = usuarioInsercao;
-            IP = "TEste";
+            IP = "Teste";
             Localizacao = "Teste";
-            Hash = GenerateHash();
         }
 
-        internal void AtualizarAuditoria(string obj, int usuarioAtualizacao)
+        internal void AtualizarAuditoria(int usuarioAtualizacao)
         {
-            var jsSettings = new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            };
-
-            Dados = JsonConvert.SerializeObject(obj, formatting: Formatting.None, jsSettings);
-            DataInsercao = DateTime.Now;
+            DataInsercao = DateTime.Now.FormatarDateTime();
             PerfilAcessoInsercao = usuarioAtualizacao;
             HashAnterior = Hash;
-            IP = "TEste";
+            IP = "Teste";
             Localizacao = "Teste";
-            Hash = GenerateHash();
         }
     }
 }
